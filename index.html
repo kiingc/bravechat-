@@ -6,13 +6,7 @@
 <title>BraveChat — Coach Masculino IA</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #0a0a0a;
-    --yellow: #e8ff00;
-    --white: #f5f5f0;
-    --gray: #1a1a1a;
-    --red: #ff3b30;
-  }
+  :root { --black: #0a0a0a; --yellow: #e8ff00; --white: #f5f5f0; --gray: #1a1a1a; --red: #ff3b30; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
   #landing { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; position: relative; }
@@ -342,9 +336,16 @@
       });
       const data = await response.json();
       hideTyping();
-      if (data.reply) { chatHistory.push({ role: 'assistant', content: data.reply }); addBotMessage(data.reply); }
-      else { addBotMessage('Ocorreu um erro. Tenta novamente.'); }
-    } catch(e) { hideTyping(); addBotMessage('Ocorreu um erro. Tenta novamente.'); }
+      if (data.reply) {
+        chatHistory.push({ role: 'assistant', content: data.reply });
+        addBotMessage(data.reply);
+      } else {
+        addBotMessage('Erro debug: ' + JSON.stringify(data));
+      }
+    } catch(e) {
+      hideTyping();
+      addBotMessage('Catch erro: ' + e.message);
+    }
     isTyping = false;
     document.getElementById('btn-send').disabled = false;
   };
