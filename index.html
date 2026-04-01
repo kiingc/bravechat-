@@ -266,7 +266,7 @@
     if (role !== 'trial') { badge.textContent = role === 'staff' ? '⚡ Staff' : '⭐ Premium'; badge.className = 'badge-premium'; badge.onclick = null; }
     else { badge.textContent = `🔥 ${days}d trial`; badge.className = 'badge-trial'; badge.onclick = goUpgrade; }
     const name = currentUser.displayName || currentUser.email.split('@')[0];
-    addBotMessage(`Olá ${name}. Sou o BraveChat.\n\nDi-me o que te trava. Pode ser com mulheres, com a vida, com a cabeça. Sem julgamentos. 🔥`);
+    addBotMessage(`Olá ${name}! 👊\n\nSeja bem-vindo ao BraveChat — o teu coach pessoal, disponível 24/7.\n\nEstou aqui para te ajudar a ser mais confiante, a falar melhor com mulheres, e a construir uma vida com direção. Sem julgamentos, sem filtros.\n\nPor onde queres começar?`);
   }
 
   function showAdminPanel() {
@@ -340,11 +340,11 @@
         chatHistory.push({ role: 'assistant', content: data.reply });
         addBotMessage(data.reply);
       } else {
-        addBotMessage('Erro debug: ' + JSON.stringify(data));
+        addBotMessage('Ocorreu um erro. Tenta novamente.');
       }
     } catch(e) {
       hideTyping();
-      addBotMessage('Catch erro: ' + e.message);
+      addBotMessage('Ocorreu um erro. Tenta novamente.');
     }
     isTyping = false;
     document.getElementById('btn-send').disabled = false;
